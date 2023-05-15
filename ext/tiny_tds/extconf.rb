@@ -35,6 +35,8 @@ DIRS = %w(
 
 # Add the ports directory if it exists for local developer builds
 DIRS.unshift(freetds_ports_dir) if File.directory?(freetds_ports_dir)
+# Add mingw prefix while we're at it i guess
+DIRS.unshift(File.join(ENV['RI_DEVKIT'].gsub('\\', '/'), ENV['MINGW_PREFIX'])) if ENV['RI_DEVKIT']
 
 # Grab freetds environment variable for use by people on services like
 # Heroku who they can't easily use bundler config to set directories
